@@ -5,12 +5,15 @@ namespace LambdaDigamma\MMFeeds\Tests;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use LambdaDigamma\MMFeeds\MMFeedsServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\LaravelRay\RayServiceProvider;
 
 class TestCase extends Orchestra
 {
     public function setUp(): void
     {
         parent::setUp();
+
+        $this->setUpDatabase();
 
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'LambdaDigamma\\MMFeeds\\Database\\Factories\\'.class_basename($modelName).'Factory'
@@ -21,6 +24,7 @@ class TestCase extends Orchestra
     {
         return [
             MMFeedsServiceProvider::class,
+            RayServiceProvider::class,
         ];
     }
 
@@ -32,10 +36,13 @@ class TestCase extends Orchestra
             'database' => ':memory:',
             'prefix' => '',
         ]);
-
-        /*
-        include_once __DIR__.'/../database/migrations/create_mm_feeds_table.php.stub';
-        (new \CreatePackageTable())->up();
-        */
     }
+
+    protected function setUpDatabase()
+    {
+        $this->loadLaravelMigrations();
+        include_once __DIR__.'/../database/migrations/create_mm_feeds_table.php.stub';
+        (new \CreateMMFeedsTable())->up();
+    }
+
 }

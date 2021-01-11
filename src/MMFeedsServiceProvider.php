@@ -2,6 +2,7 @@
 
 namespace LambdaDigamma\MMFeeds;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use LambdaDigamma\MMFeeds\Commands\MMFeedsCommand;
 
@@ -31,10 +32,13 @@ class MMFeedsServiceProvider extends ServiceProvider
         }
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'mm-feeds');
+        $this->registerRoutes();
     }
 
     public function register()
     {
+        $this->app->register('LaravelArchivable\LaravelArchivableServiceProvider');
+
         $this->mergeConfigFrom(__DIR__ . '/../config/mm-feeds.php', 'mm-feeds');
     }
 
@@ -48,5 +52,29 @@ class MMFeedsServiceProvider extends ServiceProvider
         }
 
         return false;
+    }
+
+    protected function registerRoutes()
+    {
+        Route::bind('anyfeed', function ($id) {
+            // return Feed::query()
+            //     ->withTrashed()
+            //     ->withArchived()
+            //     ->findOrFail($id);
+        });
+
+
+        Route::group($this->apiRouteConfiguration(), function () {
+            $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+        });
+    }
+
+    protected function apiRouteConfiguration()
+    {
+        return [
+            'prefix' => config('mm-feeds.api_prefix'),
+            'middleware' => config('mm-feeds.api_middleware'),
+            'as' => 'api.'
+        ];
     }
 }

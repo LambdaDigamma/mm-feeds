@@ -8,12 +8,40 @@ class CreateMMFeedsTable extends Migration
 {
     public function up()
     {
-        Schema::create('mm-feeds_table', function (Blueprint $table) {
+        Schema::create('mm_feeds', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-            // add fields
-
+            $table->json('name')->nullable();
+            $table->json('extras')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
+
+        Schema::create('mm_posts', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->json('title')->nullable();
+            $table->json('description')->nullable();
+            $table->json('slug')->nullable();
+            $table->unsignedBigInteger('feed_id')->nullable();
+            $table->unsignedBigInteger('page_id')->nullable();
+            $table->foreign('feed_id')->references('id')->on('mm_feeds')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
+            $table->foreign('page_id')->references('id')->on('mm_pages')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
+            $table->json('extras')->nullable();
+            $table->timestamp('published_at')->nullable();
+            $table->timestamps();
+            $table->archivedAt();
+            $table->softDeletes();
+        });
+
     }
+
+    public function down()
+    {
+        Schema::dropIfExists('mm_feeds');
+        Schema::dropIfExists('mm_posts');
+    }
+
 }

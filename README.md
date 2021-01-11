@@ -1,6 +1,6 @@
-# A package providing feeds for the Mein Moers platform.
+![mm-feeds](https://banners.beyondco.de/mm-feeds.png?theme=dark&packageManager=composer+require&packageName=lambdadigamma%2Fmm-feeds&pattern=architect&style=style_1&description=A+package+providing+feeds+for+the+Mein+Moers+platform.&md=1&showWatermark=0&fontSize=100px&images=rss)
 
-![mm-pages](https://banners.beyondco.de/mm-feeds.png?theme=dark&packageManager=composer+require&packageName=lambdadigamma%2Fmm-feeds&pattern=architect&style=style_1&description=A+package+providing+feeds+for+the+Mein+Moers+platform.&md=1&showWatermark=0&fontSize=100px&images=rss)
+# Handle feeds for Mein Moers
 
 A package providing feeds for the Mein Moers platform.
 
