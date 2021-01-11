@@ -3,8 +3,8 @@
 namespace LambdaDigamma\MMFeeds\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use LambdaDigamma\MMFeeds\MMFeedsServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
