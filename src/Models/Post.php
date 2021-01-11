@@ -2,15 +2,15 @@
 
 namespace LambdaDigamma\MMFeeds\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Builder;
 use LambdaDigamma\MMFeeds\Database\Factories\PostFactory;
 use LambdaDigamma\MMFeeds\Traits\SerializeTranslations;
 use LaravelArchivable\Archivable;
 
-class Post extends Model 
+class Post extends Model
 {
     use SoftDeletes;
     use HasFactory;
@@ -44,7 +44,7 @@ class Post extends Model
     }
 
     /**
-     * 
+     *
      * @return Builder
      */
     public function scopePublished(Builder $query)
@@ -52,5 +52,4 @@ class Post extends Model
         return $query
             ->where('published_at', '!=', null);
     }
-
 }

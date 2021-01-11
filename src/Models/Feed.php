@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use LambdaDigamma\MMFeeds\Database\Factories\FeedFactory;
 use LambdaDigamma\MMFeeds\Traits\SerializeTranslations;
 
-class Feed extends Model 
+class Feed extends Model
 {
     use SoftDeletes;
     use HasFactory;
@@ -40,7 +40,4 @@ class Feed extends Model
             }
         });
     }
-
-    
-
 }

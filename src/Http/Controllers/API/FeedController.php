@@ -38,12 +38,11 @@ class FeedController extends Controller
      */
     public function show($id)
     {
-        return new FeedResource
-        (
+        return new FeedResource(
             Feed::with([
-                'posts' => function($q) {
+                'posts' => function ($q) {
                     $q->published()->take(5);
-                }
+                },
             ])
             ->findOrFail($id)
         );
@@ -73,5 +72,4 @@ class FeedController extends Controller
     {
         //
     }
-
 }

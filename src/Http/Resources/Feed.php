@@ -3,7 +3,6 @@
 namespace LambdaDigamma\MMFeeds\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use LambdaDigamma\MMFeeds\Models\Post;
 
 class Feed extends JsonResource
 {
@@ -17,5 +16,4 @@ class Feed extends JsonResource
     {
         return parent::toArray($request);
     }
-
 }

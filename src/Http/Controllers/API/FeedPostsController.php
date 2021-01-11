@@ -6,7 +6,7 @@ use LambdaDigamma\MMFeeds\Http\Controllers\Controller;
 use LambdaDigamma\MMFeeds\Http\Resources\PostCollection;
 use LambdaDigamma\MMFeeds\Models\Feed;
 
-class FeedPostsController extends Controller 
+class FeedPostsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -64,6 +64,4 @@ class FeedPostsController extends Controller
     {
         //
     }
-
-
 }

@@ -74,7 +74,7 @@ class MMFeedsServiceProvider extends ServiceProvider
         return [
             'prefix' => config('mm-feeds.api_prefix'),
             'middleware' => config('mm-feeds.api_middleware'),
-            'as' => 'api.'
+            'as' => 'api.',
         ];
     }
 }
