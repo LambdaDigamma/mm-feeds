@@ -1,12 +1,12 @@
 <?php
 
-namespace Spatie\Skeleton\Commands;
+namespace LambdaDigamma\MMFeeds\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class MMFeedsCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'mm-feeds';
 
     public $description = 'My command';
 

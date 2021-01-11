@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_name/:package_name",
-    "description": ":package_description",
+    "name": "lambdadigamma/mm-feeds",
+    "description": "A package providing feeds for the Mein Moers platform.",
     "keywords": [
-        ":vendor_name",
-        ":package_name"
+        "lambdadigamma",
+        "mm-feeds"
     ],
-    "homepage": "https://github.com/:vendor_name/:package_name",
+    "homepage": "https://github.com/lambdadigamma/mm-feeds",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_homepage",
+            "name": "Lennart Fischer",
+            "email": "github@lambdadigamma.com",
+            "homepage": "https://lambdadigamma.com",
             "role": "Developer"
         }
     ],
@@ -25,13 +25,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src",
-            "Spatie\\Skeleton\\Database\\Factories\\": "database/factories"
+            "LambdaDigamma\\MMFeeds\\": "src",
+            "LambdaDigamma\\MMFeeds\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "LambdaDigamma\\MMFeeds\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -45,10 +45,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\Skeleton\\SkeletonServiceProvider"
+                "LambdaDigamma\\MMFeeds\\MMFeedsServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "Spatie\\Skeleton\\SkeletonFacade"
+                "MMFeeds": "LambdaDigamma\\MMFeeds\\MMFeedsFacade"
             }
         }
     },
@@ -56,12 +56,8 @@
     "prefer-stable": true,
     "funding": [
         {
-            "type": "github",
-            "url": "https://github.com/sponsors/:vendor_name"
-        },
-        {
             "type": "other",
-            "url": ":author_homepage"
+            "url": "https://lambdadigamma.com"
         }
     ]
 }
