@@ -30,7 +30,8 @@
         "pestphp/pest": "^1.0",
         "pestphp/pest-plugin-faker": "^1.0",
         "pestphp/pest-plugin-laravel": "^1.0",
-        "phpunit/phpunit": "^9.3"
+        "phpunit/phpunit": "^9.3",
+        "vimeo/psalm": "^4.6"
     },
     "autoload": {
         "psr-4": {
