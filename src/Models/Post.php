@@ -19,7 +19,7 @@ class Post extends Model
 
     protected $table = "mm_posts";
     protected $guarded = ['*', 'id'];
-    public $translatable = ['title', 'summary'];
+    public $translatable = ['title', 'summary', 'slug'];
 
     public static function newFactory()
     {
