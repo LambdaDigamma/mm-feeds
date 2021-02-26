@@ -8,9 +8,8 @@ Route::group([
     'prefix' => 'v1/',
     'as' => 'v1.'
 ], function () {
-    
+
     Route::apiResource('feeds', FeedController::class)->except(['index', 'store', 'update', 'destroy']);
     Route::apiResource('feeds.posts', FeedPostsController::class)->except([]);
-
 
 });

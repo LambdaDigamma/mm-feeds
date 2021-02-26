@@ -25,7 +25,7 @@ class Feed extends Model
 
     public function posts()
     {
-        return $this->hasMany(Post::class, 'feed_id', 'id');
+        return $this->hasMany(Post::class, 'feed_id', 'id')->chronological();
     }
 
     public function scopeFilter($query, array $filters)

@@ -19,7 +19,7 @@ class CreateMMFeedsTable extends Migration
         Schema::create('mm_posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->json('title')->nullable();
-            $table->json('description')->nullable();
+            $table->json('summary')->nullable();
             $table->json('slug')->nullable();
             $table->unsignedBigInteger('feed_id')->nullable();
             $table->unsignedBigInteger('page_id')->nullable();

@@ -11,12 +11,13 @@ class FeedPostsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\LambdaDigamma\MMFeeds\Http\Resources\PostCollection
      */
     public function index($id)
     {
         return new PostCollection(Feed::findOrFail($id)
             ->posts()
+            ->chronological()
             ->jsonPaginate(10));
     }
 

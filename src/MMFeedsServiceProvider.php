@@ -5,6 +5,8 @@ namespace LambdaDigamma\MMFeeds;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use LambdaDigamma\MMFeeds\Commands\MMFeedsCommand;
+use LambdaDigamma\MMFeeds\Models\Feed;
+use LambdaDigamma\MMFeeds\Models\Post;
 
 class MMFeedsServiceProvider extends ServiceProvider
 {
@@ -57,24 +59,42 @@ class MMFeedsServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::bind('anyfeed', function ($id) {
-            // return Feed::query()
-            //     ->withTrashed()
-            //     ->withArchived()
-            //     ->findOrFail($id);
+             return Feed::query()
+                 ->withTrashed()
+                 ->findOrFail($id);
         });
 
+        Route::bind('anypost', function ($id) {
+            return Post::query()
+                ->withTrashed()
+                ->withArchived()
+                ->findOrFail($id);
+        });
 
         Route::group($this->apiRouteConfiguration(), function () {
             $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+        });
+
+        Route::group($this->adminRouteConfiguration(), function () {
+            $this->loadRoutesFrom(__DIR__ . '/../routes/admin.php');
         });
     }
 
     protected function apiRouteConfiguration()
     {
         return [
-            'prefix' => config('mm-feeds.api_prefix'),
-            'middleware' => config('mm-feeds.api_middleware'),
+            'prefix' => config('mm-feeds.api_prefix', 'api'),
+            'middleware' => config('mm-feeds.api_middleware', ['api']),
             'as' => 'api.',
+        ];
+    }
+
+    protected function adminRouteConfiguration()
+    {
+        return [
+            'prefix' => config('mm-feeds.admin_prefix', 'admin'),
+            'middleware' => config('mm-feeds.admin_middleware', ['web', 'auth']),
+            'as' => 'admin.',
         ];
     }
 }

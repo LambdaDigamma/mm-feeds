@@ -38,10 +38,16 @@ class FeedController extends Controller
      */
     public function show($id)
     {
+        $defaultSize = config('json-api-paginate.default_size');
+        $sizeParameter = config('json-api-paginate.size_parameter');
+        $paginationParameter = config('json-api-paginate.pagination_parameter');
+
+        $size = (int) request()->input($paginationParameter.'.'.$sizeParameter, 10);
+
         return new FeedResource(
             Feed::with([
-                'posts' => function ($q) {
-                    $q->published()->take(5);
+                'posts' => function ($q) use ($size) {
+                    $q->published()->chronological()->jsonPaginate(10);
                 },
             ])
             ->findOrFail($id)

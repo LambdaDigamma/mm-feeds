@@ -19,7 +19,7 @@ class Post extends Model
 
     protected $table = "mm_posts";
     protected $guarded = ['*', 'id'];
-    public $translatable = ['title', 'description'];
+    public $translatable = ['title', 'summary'];
 
     public static function newFactory()
     {
@@ -31,19 +31,33 @@ class Post extends Model
         return $this->belongsTo(Feed::class, 'feed_id', 'id');
     }
 
+    public function publish()
+    {
+        return $this->update(['published_at' => now()]);
+    }
+
+    public function unpublish()
+    {
+        return $this->update(['published_at' => null]);
+    }
+
     /**
      * Orders the query with a chronological published date.
      * Events without a start date go last.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
      *
      * @return Builder
      */
     public function scopeChronological(Builder $query)
     {
         return $query
-            ->orderByRaw('-published_at DESC');
+            ->orderByRaw('-published_at ASC');
     }
 
     /**
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
      *
      * @return Builder
      */
