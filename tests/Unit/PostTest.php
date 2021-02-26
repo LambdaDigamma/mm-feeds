@@ -1,5 +1,6 @@
 <?php
 
+use LambdaDigamma\MMFeeds\Models\Feed;
 use LambdaDigamma\MMFeeds\Models\Post;
 
 test('post can be created', function () {
@@ -16,7 +17,7 @@ test('post can be created', function () {
 
 });
 
-test('feed can have localized title, summary, slug', function () {
+test('post can have localized title, summary, slug', function () {
 
     app()->setLocale('en');
 
@@ -38,6 +39,17 @@ test('feed can have localized title, summary, slug', function () {
 
     expect($post->getTranslation('slug', 'en'))->toBe('post-1')
         ->and($post->getTranslation('slug', 'de'))->toBe('eintrag-1');
+
+});
+
+test('post can belong to feed', function () {
+
+    $post = Post::factory()->create();
+    $feed = Feed::factory()->create();
+
+    $feed->posts()->save($post);
+
+    expect($post->feed->id)->toBe($feed->id);
 
 });
 
