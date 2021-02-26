@@ -59,7 +59,7 @@ class MMFeedsServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::bind('anyfeed', function ($id) {
-             return Feed::query()
+            return Feed::query()
                  ->withTrashed()
                  ->findOrFail($id);
         });
