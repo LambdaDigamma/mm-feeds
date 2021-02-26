@@ -26,9 +26,9 @@ class Post extends Model
         return PostFactory::new();
     }
 
-    public function feed()
+    public function feeds()
     {
-        return $this->belongsTo(Feed::class, 'feed_id', 'id');
+        return $this->belongsToMany(Feed::class, 'mm_post_feed', 'feed_id', 'post_id');
     }
 
     public function publish()

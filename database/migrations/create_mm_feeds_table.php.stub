@@ -21,11 +21,7 @@ class CreateMMFeedsTable extends Migration
             $table->json('title')->nullable();
             $table->json('summary')->nullable();
             $table->json('slug')->nullable();
-            $table->unsignedBigInteger('feed_id')->nullable();
             $table->unsignedBigInteger('page_id')->nullable();
-            $table->foreign('feed_id')->references('id')->on('mm_feeds')
-                ->onUpdate('cascade')
-                ->onDelete('set null');
             $table->foreign('page_id')->references('id')->on('mm_pages')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
@@ -36,12 +32,27 @@ class CreateMMFeedsTable extends Migration
             $table->softDeletes();
         });
 
+        Schema::create('mm_post_feed', function (Blueprint $table)
+        {
+            $table->unsignedBigInteger('feed_id');
+            $table->unsignedBigInteger('post_id');
+
+            $table->foreign('feed_id')->references('id')->on('mm_feeds')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('mm_posts')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->timestamps();
+        });
+
     }
 
     public function down()
     {
         Schema::dropIfExists('mm_feeds');
         Schema::dropIfExists('mm_posts');
+        Schema::dropIfExists('mm_post_feed');
     }
 
 }

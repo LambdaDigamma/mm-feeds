@@ -49,7 +49,7 @@ test('post can belong to feed', function () {
 
     $feed->posts()->save($post);
 
-    expect($post->feed->id)->toBe($feed->id);
+    expect($post->feeds->pluck('id'))->toContain($feed->id);
 
 });
 
