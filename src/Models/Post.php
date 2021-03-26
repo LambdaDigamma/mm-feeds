@@ -31,9 +31,9 @@ class Post extends Model
         return $this->belongsToMany(Feed::class, 'mm_post_feed', 'post_id', 'feed_id');
     }
 
-    public function publish()
+    public function publish($at = null)
     {
-        return $this->update(['published_at' => now()]);
+        return $this->update(['published_at' => $at ?? now()]);
     }
 
     public function unpublish()

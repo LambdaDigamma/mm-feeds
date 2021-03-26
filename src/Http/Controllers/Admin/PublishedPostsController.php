@@ -6,13 +6,17 @@ namespace LambdaDigamma\MMFeeds\Http\Controllers\Admin;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use LambdaDigamma\MMFeeds\Http\Controllers\Controller;
+use LambdaDigamma\MMFeeds\Http\Requests\PublishPost;
 use LambdaDigamma\MMFeeds\Models\Post;
 
 class PublishedPostsController extends Controller
 {
-    public function publish(Request $request, Post $post)
+    public function publish(PublishPost $request, Post $post)
     {
-//        $post->publish();
+        $published_at = $request->get('published_at', now());
+
+        $post->published_at = $published_at;
+        $post->save();
 
         return $request->wantsJson()
             ? new JsonResponse('', 200)
