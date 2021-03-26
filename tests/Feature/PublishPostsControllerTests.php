@@ -34,6 +34,6 @@ test('published post can be unpublished', function () {
     $post = Post::factory()->published()->create();
     expect($post->published_at)->not->toBeNull();
 
-    postJson("/admin/posts/{$post->id}/unpublish")->assertStatus(200);   
+    postJson("/admin/posts/{$post->id}/unpublish")->assertStatus(200);
     expect(Post::find($post->id)->published_at)->toBeNull();
 });
