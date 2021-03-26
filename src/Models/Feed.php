@@ -25,7 +25,12 @@ class Feed extends Model
 
     public function posts()
     {
-        return $this->belongsToMany(Post::class, 'mm_post_feed', 'feed_id', 'post_id')->chronological();
+        return $this
+            ->belongsToMany(Post::class, 'mm_publications', 'feed_id', 'post_id')
+            ->using(Publication::class)
+            ->as('publication')
+            ->withPivot('order')
+            ->orderByPivot('order');
     }
 
     public function scopeFilter($query, array $filters)

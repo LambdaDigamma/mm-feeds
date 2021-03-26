@@ -32,10 +32,10 @@ class CreateMMFeedsTable extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('mm_post_feed', function (Blueprint $table)
+        Schema::create('mm_publications', function (Blueprint $table)
         {
-            $table->unsignedBigInteger('feed_id');
-            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('feed_id')->index();
+            $table->unsignedBigInteger('post_id')->index();
 
             $table->foreign('feed_id')->references('id')->on('mm_feeds')
                 ->onUpdate('cascade')
@@ -43,6 +43,7 @@ class CreateMMFeedsTable extends Migration
             $table->foreign('post_id')->references('id')->on('mm_posts')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->unsignedInteger('order')->nullable();
             $table->timestamps();
         });
 

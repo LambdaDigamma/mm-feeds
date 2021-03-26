@@ -24,7 +24,7 @@ class PublishPost extends FormRequest
     public function rules()
     {
         return [
-            'published_at' => 'nullable|date|after_or_equal:now',
+            'published_at' => 'nullable|date',
         ];
     }
 }

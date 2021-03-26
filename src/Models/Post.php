@@ -28,7 +28,11 @@ class Post extends Model
 
     public function feeds()
     {
-        return $this->belongsToMany(Feed::class, 'mm_post_feed', 'post_id', 'feed_id');
+        return $this
+            ->belongsToMany(Feed::class, 'mm_publications', 'post_id', 'feed_id')
+            ->as('publication')
+            ->using(Publication::class)
+            ->orderByPivot('order');
     }
 
     public function publish($at = null)
