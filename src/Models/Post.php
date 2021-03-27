@@ -9,16 +9,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use LambdaDigamma\MMFeeds\Database\Factories\PostFactory;
 use LambdaDigamma\MMFeeds\Traits\SerializeTranslations;
 use LaravelArchivable\Archivable;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Post extends Model
+class Post extends Model implements HasMedia
 {
     use SoftDeletes;
     use HasFactory;
     use SerializeTranslations;
     use Archivable;
+    use InteractsWithMedia;
+    
 
     protected $table = "mm_posts";
     protected $guarded = ['*', 'id'];
+    protected $dates = ["published_at"];
     public $translatable = ['title', 'summary', 'slug'];
 
     public static function newFactory()
@@ -69,5 +76,26 @@ class Post extends Model
     {
         return $query
             ->where('published_at', '!=', null);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('header')
+            ->singleFile()
+            ->withResponsiveImages()
+            ->registerMediaConversions(function (Media $media) {
+                $this
+                    ->addMediaConversion('opengraph')
+                    ->width(1200)
+                    ->height(630);
+            });
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('preview')
+            ->fit(Manipulations::FIT_CROP, 300, 300)
+            ->nonQueued();
     }
 }

@@ -8,11 +8,11 @@ test('posts belonging to feed have publication pivot with order column', functio
     $posts = Post::factory()->count(5)->create();
 
     $map = collect([
-        '3' => $posts[0],
-        '1' => $posts[1],
-        '4' => $posts[2],
+        null => $posts[4],
         '0' => $posts[3],
-        '2' => $posts[4],
+        '1' => $posts[1],
+        '3' => $posts[0],
+        '4' => $posts[2],
     ]);
 
     $map->each(function ($post, $key) use ($feed) {
@@ -21,12 +21,11 @@ test('posts belonging to feed have publication pivot with order column', functio
 
     $orderArray = Feed::find($feed->id)
         ->posts
-        ->map(fn ($post) => $post->publication)
-        ->pluck('order')
+        ->pluck('id')
         ->all();
 
     expect($orderArray)
         ->toBeArray()
         ->and($orderArray)
-        ->toBe(['0', '1', '2', '3', '4']);
+        ->toBe([4, 2, 1, 3, 5]);
 });

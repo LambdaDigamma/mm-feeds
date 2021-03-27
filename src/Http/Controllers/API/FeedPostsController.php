@@ -17,8 +17,10 @@ class FeedPostsController extends Controller
     {
         return new PostCollection(Feed::findOrFail($id)
             ->posts()
+            ->with(['media'])
             ->chronological()
-            ->jsonPaginate(10));
+            ->jsonPaginate(10)
+        );
     }
 
     /**

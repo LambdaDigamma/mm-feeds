@@ -30,6 +30,8 @@ class Feed extends Model
             ->using(Publication::class)
             ->as('publication')
             ->withPivot('order')
+            ->withTimestamps()
+            ->chronological()
             ->orderByPivot('order');
     }
 

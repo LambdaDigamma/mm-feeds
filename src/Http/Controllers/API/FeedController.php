@@ -46,8 +46,12 @@ class FeedController extends Controller
 
         return new FeedResource(
             Feed::with([
-                'posts' => function ($q) use ($size) {
-                    $q->published()->chronological()->jsonPaginate(10);
+                'posts' => function ($query) use ($size) {
+                    $query
+                        ->with(['media'])
+                        ->published()
+                        ->chronological()
+                        ->jsonPaginate(10);
                 },
             ])
             ->findOrFail($id)
