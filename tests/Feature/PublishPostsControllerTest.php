@@ -25,7 +25,7 @@ test('unpublished post can be published at specific time', function () {
     postJson("/admin/posts/{$post->id}/publish", [
         'published_at' => $publishAt->toDateTimeString(),
     ])->assertStatus(200);
-    expect(Post::find($post->id)->published_at)
+    expect(Post::find($post->id)->published_at->toDateTimeString())
         ->toBe($publishAt->toDateTimeString());
 });
 
