@@ -75,7 +75,7 @@ class Post extends Model implements HasMedia
     public function scopePublished(Builder $query)
     {
         return $query
-            ->where('published_at', '!=', null);
+            ->where('published_at', '<=', now()->toDateTimeString());
     }
 
     public function registerMediaCollections(): void
