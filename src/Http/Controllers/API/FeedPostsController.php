@@ -15,7 +15,8 @@ class FeedPostsController extends Controller
      */
     public function index($id)
     {
-        return new PostCollection(Feed::findOrFail($id)
+        return new PostCollection(
+            Feed::findOrFail($id)
             ->posts()
             ->with(['media'])
             ->chronological()
