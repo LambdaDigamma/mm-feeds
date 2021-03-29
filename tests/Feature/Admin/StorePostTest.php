@@ -10,7 +10,6 @@ use function Pest\Laravel\post;
 use function Pest\Laravel\postJson;
 
 test('authenticated user can store post via form (POST /admin/posts)', function () {
-    
     expect(Post::all())->toHaveCount(0);
     actingAs(UserFactory::new()->create());
 
@@ -26,7 +25,6 @@ test('authenticated user can store post via form (POST /admin/posts)', function 
 });
 
 test('store post via json (POST /admin/posts)', function () {
-    
     expect(Post::all())->toHaveCount(0);
     actingAs(UserFactory::new()->create());
 
