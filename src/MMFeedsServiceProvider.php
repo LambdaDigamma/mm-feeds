@@ -67,6 +67,7 @@ class MMFeedsServiceProvider extends ServiceProvider
         Route::bind('anypost', function ($id) {
             return Post::query()
                 ->withTrashed()
+                ->withNotPublished()
                 ->withArchived()
                 ->findOrFail($id);
         });

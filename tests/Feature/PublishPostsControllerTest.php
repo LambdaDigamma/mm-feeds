@@ -25,7 +25,7 @@ test('unpublished post can be published at specific time', function () {
     postJson("/admin/posts/{$post->id}/publish", [
         'published_at' => $publishAt->toDateTimeString(),
     ])->assertStatus(200);
-    expect(Post::find($post->id)->published_at->toDateTimeString())
+    expect(Post::query()->withNotPublished()->find($post->id)->published_at->toDateTimeString())
         ->toBe($publishAt->toDateTimeString());
 });
 
@@ -35,5 +35,6 @@ test('published post can be unpublished', function () {
     expect($post->published_at)->not->toBeNull();
 
     postJson("/admin/posts/{$post->id}/unpublish")->assertStatus(200);
-    expect(Post::find($post->id)->published_at)->toBeNull();
+    expect(Post::query()->withNotPublished()->find($post->id)->published_at)
+        ->toBeNull();
 });

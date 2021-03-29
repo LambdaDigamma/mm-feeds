@@ -5,7 +5,7 @@ use LambdaDigamma\MMFeeds\Models\Post;
 
 test('posts belonging to feed have publication pivot with order column', function () {
     $feed = Feed::factory()->create();
-    $posts = Post::factory()->count(5)->create();
+    $posts = Post::factory()->count(5)->published()->create();
 
     $map = collect([
         null => $posts[4],

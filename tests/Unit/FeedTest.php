@@ -26,7 +26,7 @@ test('feed can have localized name', function () {
 
 test('add post to feed', function () {
     $feed = Feed::factory()->create();
-    $post = Post::factory()->make();
+    $post = Post::factory()->published()->make();
 
     $feed->posts()->save($post);
 

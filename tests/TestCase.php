@@ -4,6 +4,7 @@ namespace LambdaDigamma\MMFeeds\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use LambdaDigamma\MMFeeds\MMFeedsServiceProvider;
+use LaravelPublishable\LaravelPublishableServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\LaravelRay\RayServiceProvider;
 
@@ -24,6 +25,7 @@ class TestCase extends Orchestra
     {
         return [
             MMFeedsServiceProvider::class,
+            LaravelPublishableServiceProvider::class,
             RayServiceProvider::class,
         ];
     }

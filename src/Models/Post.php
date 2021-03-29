@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use LambdaDigamma\MMFeeds\Database\Factories\PostFactory;
 use LambdaDigamma\MMFeeds\Traits\SerializeTranslations;
 use LaravelArchivable\Archivable;
+use LaravelPublishable\Publishable;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -18,14 +19,13 @@ class Post extends Model implements HasMedia
 {
     use SoftDeletes;
     use HasFactory;
-    use SerializeTranslations;
     use Archivable;
+    use Publishable;
+    use SerializeTranslations;
     use InteractsWithMedia;
-    
 
     protected $table = "mm_posts";
     protected $guarded = ['*', 'id'];
-    protected $dates = ["published_at"];
     public $translatable = ['title', 'summary', 'slug'];
 
     public static function newFactory()
@@ -42,16 +42,6 @@ class Post extends Model implements HasMedia
             ->orderByPivot('order');
     }
 
-    public function publish($at = null)
-    {
-        return $this->update(['published_at' => $at ?? now()]);
-    }
-
-    public function unpublish()
-    {
-        return $this->update(['published_at' => null]);
-    }
-
     /**
      * Orders the query with a chronological published date.
      * Events without a start date go last.
@@ -64,18 +54,6 @@ class Post extends Model implements HasMedia
     {
         return $query
             ->orderByRaw('-published_at ASC');
-    }
-
-    /**
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
-     * @return Builder
-     */
-    public function scopePublished(Builder $query)
-    {
-        return $query
-            ->where('published_at', '<=', now()->toDateTimeString());
     }
 
     public function registerMediaCollections(): void
