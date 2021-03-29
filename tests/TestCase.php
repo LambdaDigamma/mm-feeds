@@ -28,7 +28,7 @@ class TestCase extends Orchestra
             MMFeedsServiceProvider::class,
             LaravelPublishableServiceProvider::class,
             RayServiceProvider::class,
-            JsonApiPaginateServiceProvider::class
+            JsonApiPaginateServiceProvider::class,
         ];
     }
 

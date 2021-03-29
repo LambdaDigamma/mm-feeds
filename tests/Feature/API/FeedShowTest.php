@@ -3,10 +3,8 @@
 use LambdaDigamma\MMFeeds\Models\Feed;
 
 use function Pest\Laravel\get;
-use function Pest\Laravel\postJson;
 
 test('show feed (/api/v1/feeds/id)', function () {
-    
     $feed1 = Feed::factory()->create();
 
     // expect($post->published_at)->not->toBeNull();
@@ -17,7 +15,7 @@ test('show feed (/api/v1/feeds/id)', function () {
                 'id', 'name', 'extras', 'created_at', 'updated_at', 'deleted_at',
                 'posts' => [
 
-                ]
-            ]
+                ],
+            ],
         ]);
 });
