@@ -49,7 +49,6 @@ class FeedController extends Controller
                 'posts' => function ($query) use ($size) {
                     $query
                         ->with(['media'])
-                        ->published()
                         ->chronological()
                         ->jsonPaginate(10);
                 },
