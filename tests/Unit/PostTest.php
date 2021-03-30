@@ -22,11 +22,13 @@ test('post can have localized title, summary, slug', function () {
         'title' => 'Post #1',
         'summary' => 'Short summary',
         'slug' => 'post-1',
+        'external_href' => 'https://example.com'
     ]);
 
     $post->setTranslation('title', 'de', 'Eintrag #1');
     $post->setTranslation('summary', 'de', 'Kurze Zusammenfassung');
     $post->setTranslation('slug', 'de', 'eintrag-1');
+    $post->setTranslation('external_href', 'de', 'https://example.de');
 
     expect($post->getTranslation('title', 'en'))->toBe('Post #1')
         ->and($post->getTranslation('title', 'de'))->toBe('Eintrag #1');
@@ -36,6 +38,9 @@ test('post can have localized title, summary, slug', function () {
 
     expect($post->getTranslation('slug', 'en'))->toBe('post-1')
         ->and($post->getTranslation('slug', 'de'))->toBe('eintrag-1');
+
+    expect($post->getTranslation('external_href', 'en'))->toBe('https://example.com')
+        ->and($post->getTranslation('external_href', 'de'))->toBe('https://example.de');
 });
 
 test('post can belong to feed', function () {
@@ -65,4 +70,15 @@ test('post can be unpublished', function () {
     $post->unpublish();
 
     expect($post->published_at)->toBeNull();
+});
+
+test('post can have a cta attribute', function () {
+    $post = Post::factory()->published()->create(['extras' => ['cta' => 'watch']]);
+    expect($post->cta)->toBe('watch');
+});
+
+test('post can set a cta attribute', function () {
+    $post = Post::factory()->published()->create();
+    $post->cta = 'watch';
+    expect($post->cta)->toBe('watch');
 });

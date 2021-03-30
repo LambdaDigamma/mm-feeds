@@ -3,6 +3,7 @@
 namespace LambdaDigamma\MMFeeds\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -26,7 +27,11 @@ class Post extends Model implements HasMedia
 
     protected $table = "mm_posts";
     protected $guarded = ['*', 'id'];
-    public $translatable = ['title', 'summary', 'slug'];
+    public $translatable = ['title', 'summary', 'slug', 'external_href'];
+    protected $appends = ['cta'];
+    protected $casts = [
+        'extras' => AsCollection::class,
+    ];
 
     public static function newFactory()
     {
@@ -75,5 +80,19 @@ class Post extends Model implements HasMedia
             ->addMediaConversion('preview')
             ->fit(Manipulations::FIT_CROP, 300, 300)
             ->nonQueued();
+    }
+
+    public function getCtaAttribute()
+    {
+        return $this->extras ? $this->extras->get('cta', 'read') : "read";
+    }
+
+    public function setCtaAttribute($value)
+    {
+        if ($this->extras) {
+            $this->extras->set('cta', $value);
+        } else {
+            $this->extras = collect(['cta' => $value]);
+        }
     }
 }

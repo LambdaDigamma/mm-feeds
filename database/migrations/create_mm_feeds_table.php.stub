@@ -22,12 +22,13 @@ class CreateMMFeedsTable extends Migration
             $table->json('summary')->nullable();
             $table->json('slug')->nullable();
             $table->unsignedBigInteger('page_id')->nullable();
+            $table->json('external_href')->nullable();
             $table->foreign('page_id')->references('id')->on('mm_pages')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
             $table->json('extras')->nullable();
-            $table->timestamp('published_at')->nullable();
             $table->timestamps();
+            $table->publishedAt();
             $table->archivedAt();
             $table->softDeletes();
         });
