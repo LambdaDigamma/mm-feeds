@@ -81,4 +81,6 @@ test('post can set a cta attribute', function () {
     $post = Post::factory()->published()->create();
     $post->cta = 'watch';
     expect($post->cta)->toBe('watch');
+    $post->cta = 'more';
+    expect($post->cta)->toBe('more');
 });

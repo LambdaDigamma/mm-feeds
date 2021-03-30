@@ -90,7 +90,7 @@ class Post extends Model implements HasMedia
     public function setCtaAttribute($value)
     {
         if ($this->extras) {
-            $this->extras->set('cta', $value);
+            $this->extras->put('cta', $value);
         } else {
             $this->extras = collect(['cta' => $value]);
         }
