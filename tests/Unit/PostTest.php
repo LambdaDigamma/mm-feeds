@@ -22,7 +22,7 @@ test('post can have localized title, summary, slug', function () {
         'title' => 'Post #1',
         'summary' => 'Short summary',
         'slug' => 'post-1',
-        'external_href' => 'https://example.com'
+        'external_href' => 'https://example.com',
     ]);
 
     $post->setTranslation('title', 'de', 'Eintrag #1');
