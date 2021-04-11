@@ -20,7 +20,7 @@ class PublishedPostsController extends Controller
 
         return $request->wantsJson()
             ? new JsonResponse('', 200)
-            : redirect()->back()->with('info', 'Der Post wurde veröffentlicht.');
+            : redirect()->back()->with('info', 'Der Veröffentlichungszeitpunkt wurde festgelegt.');
     }
 
     public function unpublish(Request $request, Post $post)

@@ -44,8 +44,10 @@ class FeedController extends Controller
 
         $size = (int) request()->input($paginationParameter.'.'.$sizeParameter, 10);
 
+        $feedModel = config('mm-feeds.feed_model');
+
         return new FeedResource(
-            Feed::with([
+            $feedModel::with([
                 'posts' => function ($query) use ($size) {
                     $query
                         ->with(['media'])

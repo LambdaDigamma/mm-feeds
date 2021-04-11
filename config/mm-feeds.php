@@ -2,6 +2,10 @@
 
 return [
 
+    'feed_model' => LambdaDigamma\MMFeeds\Models\Feed::class,
+
+    'post_model' => LambdaDigamma\MMFeeds\Models\Post::class,
+
     /**
      * The api endpoints are being registered
      * under this prefix.
