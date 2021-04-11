@@ -5,7 +5,6 @@ namespace LambdaDigamma\MMFeeds\Http\Controllers\API;
 use Illuminate\Http\Request;
 use LambdaDigamma\MMFeeds\Http\Controllers\Controller;
 use LambdaDigamma\MMFeeds\Http\Resources\Feed as FeedResource;
-use LambdaDigamma\MMFeeds\Models\Feed;
 
 class FeedController extends Controller
 {
