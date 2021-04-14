@@ -20,8 +20,35 @@ class PostFactory extends Factory
     public function published()
     {
         return $this->state(fn () => [
-            'published_at' => $this->faker->dateTimeBetween('-60 days', '-1 days'),
+            'published_at' => now(),
         ]);
+    }
+
+    public function notPublished()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'published_at' => null,
+            ];
+        });
+    }
+
+    public function archived()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'archived_at' => now(),
+            ];
+        });
+    }
+
+    public function notArchived()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'archived_at' => null,
+            ];
+        });
     }
 }
 
