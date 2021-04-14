@@ -15,6 +15,7 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model implements HasMedia
 {
@@ -33,12 +34,15 @@ class Post extends Model implements HasMedia
         'extras' => AsCollection::class,
     ];
 
-    public static function newFactory()
+    public static function newFactory(): PostFactory
     {
         return PostFactory::new();
     }
 
-    public function feeds()
+    /**
+     * @return BelongsToMany
+     */
+    public function feeds(): BelongsToMany
     {
         return $this
             ->belongsToMany(Feed::class, 'mm_publications', 'post_id', 'feed_id')
@@ -87,7 +91,7 @@ class Post extends Model implements HasMedia
         return $this->extras ? $this->extras->get('cta', 'read') : "read";
     }
 
-    public function setCtaAttribute($value)
+    public function setCtaAttribute($value): void
     {
         if ($this->extras) {
             $this->extras->put('cta', $value);

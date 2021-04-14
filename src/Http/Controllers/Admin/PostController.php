@@ -9,6 +9,9 @@ use LambdaDigamma\MMFeeds\Models\Post;
 
 class PostController extends Controller
 {
+    /**
+     * @return JsonResponse|\Illuminate\Http\RedirectResponse
+     */
     public function store(StorePostRequest $request)
     {
         $post = Post::create($request->validated());

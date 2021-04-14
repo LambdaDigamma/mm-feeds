@@ -10,7 +10,7 @@ use LambdaDigamma\MMFeeds\Models\Post;
 
 class MMFeedsServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -56,7 +56,7 @@ class MMFeedsServiceProvider extends ServiceProvider
         return false;
     }
 
-    protected function registerRoutes()
+    protected function registerRoutes(): void
     {
         Route::bind('anyfeed', function ($id) {
             return Feed::query()
@@ -81,7 +81,12 @@ class MMFeedsServiceProvider extends ServiceProvider
         });
     }
 
-    protected function apiRouteConfiguration()
+    /**
+     * @return (\Illuminate\Config\Repository|mixed|string)[]
+     *
+     * @psalm-return array{prefix: \Illuminate\Config\Repository|mixed, middleware: \Illuminate\Config\Repository|mixed, as: string}
+     */
+    protected function apiRouteConfiguration(): array
     {
         return [
             'prefix' => config('mm-feeds.api_prefix', 'api'),
@@ -90,7 +95,12 @@ class MMFeedsServiceProvider extends ServiceProvider
         ];
     }
 
-    protected function adminRouteConfiguration()
+    /**
+     * @return (\Illuminate\Config\Repository|mixed|string)[]
+     *
+     * @psalm-return array{prefix: \Illuminate\Config\Repository|mixed, middleware: \Illuminate\Config\Repository|mixed, as: string}
+     */
+    protected function adminRouteConfiguration(): array
     {
         return [
             'prefix' => config('mm-feeds.admin_prefix', 'admin'),

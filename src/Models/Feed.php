@@ -18,7 +18,7 @@ class Feed extends Model
     protected $guarded = ['*', 'id'];
     public $translatable = ['name', 'extras'];
 
-    public static function newFactory()
+    public static function newFactory(): FeedFactory
     {
         return FeedFactory::new();
     }
@@ -35,7 +35,7 @@ class Feed extends Model
             ->orderByPivot('order');
     }
 
-    public function scopeFilter($query, array $filters)
+    public function scopeFilter($query, array $filters): void
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
             $query->where('name', 'like', '%'.$search.'%');

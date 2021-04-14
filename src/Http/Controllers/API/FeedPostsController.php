@@ -2,6 +2,7 @@
 
 namespace LambdaDigamma\MMFeeds\Http\Controllers\API;
 
+use Illuminate\Http\Request;
 use LambdaDigamma\MMFeeds\Http\Controllers\Controller;
 use LambdaDigamma\MMFeeds\Http\Resources\PostCollection;
 
@@ -28,10 +29,11 @@ class FeedPostsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     *
+     * @return void
      */
-    public function store(Request $request)
+    public function store(Request $request): void
     {
         //
     }
@@ -39,10 +41,11 @@ class FeedPostsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int  $id
+     *
+     * @return void
      */
-    public function show($id)
+    public function show($id): void
     {
         // return new EventResource(Event::with('page', 'place')->findOrFail($id));
     }
@@ -50,11 +53,12 @@ class FeedPostsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int  $id
+     *
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): void
     {
         //
     }
@@ -62,10 +66,11 @@ class FeedPostsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int  $id
+     *
+     * @return void
      */
-    public function destroy($id)
+    public function destroy($id): void
     {
         //
     }
