@@ -4,7 +4,6 @@ namespace LambdaDigamma\MMFeeds\Http\Controllers\Admin;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use LambdaDigamma\MMFeeds\Http\Controllers\Controller;
 use LambdaDigamma\MMFeeds\Models\Post;
 
