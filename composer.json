@@ -22,7 +22,7 @@
         "lambdadigamma/laravel-publishable": "^1.0.0",
         "laravel-json-api/laravel": "^2.0",
         "spatie/laravel-json-api-paginate": "^1.11",
-        "spatie/laravel-medialibrary": "^9.4",
+        "spatie/laravel-medialibrary": "^9.4 || ^10.0",
         "spatie/laravel-query-builder": "^3.3",
         "spatie/laravel-translatable": "^4.6 || ^5.0"
     },
