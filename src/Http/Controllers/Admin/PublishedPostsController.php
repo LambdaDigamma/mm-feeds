@@ -1,6 +1,5 @@
 <?php
 
-
 namespace LambdaDigamma\MMFeeds\Http\Controllers\Admin;
 
 use Illuminate\Http\JsonResponse;

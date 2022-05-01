@@ -37,7 +37,7 @@ test('archived post can be unarchived', function () {
 test('archived not published post can be unarchived', function () {
     actingAs(UserFactory::new()->create());
     $post = Post::factory()->archived()->create();
-    
+
     expect($post->archived_at)->not->toBeNull();
 
     postJson("/admin/posts/{$post->id}/unarchive")->assertStatus(200);
