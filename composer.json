@@ -17,10 +17,10 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/contracts": "^8.76 || ^9.0",
+        "illuminate/contracts": "^8.76 || ^9.0 || ^10.0",
         "joelbutcher/laravel-archivable": "^1.2",
         "lambdadigamma/laravel-publishable": "^1.0.0",
-        "laravel-json-api/laravel": "^2.0",
+        "laravel-json-api/laravel": "^2.0 || ^3.0",
         "spatie/laravel-json-api-paginate": "^1.11",
         "spatie/laravel-medialibrary": "^9.4 || ^10.0",
         "spatie/laravel-query-builder": "^5.0",
