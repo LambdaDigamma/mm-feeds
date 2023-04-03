@@ -8,6 +8,7 @@ use LaravelPublishable\LaravelPublishableServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\JsonApiPaginate\JsonApiPaginateServiceProvider;
 use Spatie\LaravelRay\RayServiceProvider;
+use Spatie\MediaLibrary\MediaLibraryServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -29,6 +30,7 @@ class TestCase extends Orchestra
             LaravelPublishableServiceProvider::class,
             RayServiceProvider::class,
             JsonApiPaginateServiceProvider::class,
+            MediaLibraryServiceProvider::class,
         ];
     }
 
@@ -47,5 +49,8 @@ class TestCase extends Orchestra
         $this->loadLaravelMigrations();
         include_once __DIR__.'/../database/migrations/create_mm_feeds_table.php.stub';
         (new \CreateMMFeedsTable())->up();
+
+        include_once __DIR__.'/../tests/Migrations/create_media_table.php';
+        (new \CreateMediaTable())->up();
     }
 }
