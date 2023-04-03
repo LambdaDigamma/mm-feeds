@@ -3,15 +3,16 @@
 use LambdaDigamma\MMFeeds\Models\Feed;
 use LambdaDigamma\MMFeeds\Models\Post;
 use LambdaDigamma\MMFeeds\Models\Publication;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use function Pest\Laravel\get;
+
 use function Pest\Laravel\getJson;
+
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 test('show post not published returns 404 (/api/v1/posts/id)', function () {
 
     $feed1 = Feed::factory()->create();
     $post = Post::factory()->create([
-        'published_at' => null
+        'published_at' => null,
     ]);
     Publication::create([
         'post_id' => $post->id,
@@ -29,7 +30,7 @@ test('show post (/api/v1/posts/id)', function () {
     $feed1 = Feed::factory()->create();
     $post = Post::factory()->create([
         'title' => 'Post Title',
-        'published_at' => now()
+        'published_at' => now(),
     ]);
     Publication::create([
         'post_id' => $post->id,
@@ -53,7 +54,7 @@ test('show post (/api/v1/posts/id)', function () {
                 'archived_at',
                 'deleted_at',
                 'cta',
-                'media'
+                'media',
             ],
         ]);
 });
