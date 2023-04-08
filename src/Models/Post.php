@@ -99,4 +99,15 @@ class Post extends Model implements HasMedia
             $this->extras = collect(['cta' => $value]);
         }
     }
+
+    public function toArray()
+    {
+        $attributes = parent::toArray();
+
+        return array_merge(
+            $attributes,
+            $this->serializeMediaCollections(),
+            $this->serializeTranslations(),
+        );
+    }
 }

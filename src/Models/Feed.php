@@ -47,4 +47,16 @@ class Feed extends Model
             }
         });
     }
+
+    public function toArray()
+    {
+        $attributes = parent::toArray();
+
+//        dd($this->getTranslatableAttributes());
+        return $this->serializeTranslations($attributes);
+
+//        dd($attributes);
+//
+//        return $attributes;
+    }
 }

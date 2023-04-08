@@ -9,7 +9,7 @@ class PostController
     public function show($id)
     {
         /** @var Post $post */
-        $post = Post::query()
+        $post = config('mm-feeds.post_model')::query()
             ->where('id', $id)
             ->with('media')
             ->firstOrFail();
