@@ -2,8 +2,6 @@
 
 namespace LambdaDigamma\MMFeeds\Traits;
 
-use Spatie\Translatable\HasTranslations;
-
 trait SerializeMedia
 {
     public function serializeMediaCollections(): array

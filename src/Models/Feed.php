@@ -52,11 +52,11 @@ class Feed extends Model
     {
         $attributes = parent::toArray();
 
-//        dd($this->getTranslatableAttributes());
+        //        dd($this->getTranslatableAttributes());
         return $this->serializeTranslations($attributes);
 
-//        dd($attributes);
-//
-//        return $attributes;
+        //        dd($attributes);
+        //
+        //        return $attributes;
     }
 }
