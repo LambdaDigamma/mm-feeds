@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use LambdaDigamma\MMFeeds\Database\Factories\PostFactory;
+use LambdaDigamma\MMFeeds\Traits\SerializeMedia;
 use LambdaDigamma\MMFeeds\Traits\SerializeTranslations;
 use LaravelArchivable\Archivable;
 use LaravelPublishable\Publishable;
@@ -24,6 +25,7 @@ class Post extends Model implements HasMedia
     use Archivable;
     use Publishable;
     use SerializeTranslations;
+    use SerializeMedia;
     use InteractsWithMedia;
 
     protected $table = "mm_posts";
