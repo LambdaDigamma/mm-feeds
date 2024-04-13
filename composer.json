@@ -20,7 +20,7 @@
         "illuminate/contracts": "^10.0 || ^11.0",
         "joelbutcher/laravel-archivable": "^1.2",
         "lambdadigamma/laravel-publishable": "^1.0.0",
-        "laravel-json-api/laravel": "^2.0 || ^3.0",
+        "laravel-json-api/laravel": "^2.0 || ^3.0 || ^4.0",
         "spatie/laravel-json-api-paginate": "^1.11",
         "spatie/laravel-medialibrary": "^10.0 || ^11.0",
         "spatie/laravel-query-builder": "^5.0",
