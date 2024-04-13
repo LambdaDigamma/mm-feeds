@@ -49,7 +49,7 @@ class FeedController extends Controller
 
         return new FeedResource(
             $feedModel::with([
-                'posts' => function ($query) use ($size) {
+                'posts' => function ($query) {
                     $query
                         ->with(['media'])
                         ->chronological()

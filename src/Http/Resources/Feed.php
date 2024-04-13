@@ -9,10 +9,11 @@ class Feed extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @param \Illuminate\Http\Request  $request
+     *
+     * @return \Illuminate\Contracts\Support\Arrayable|\JsonSerializable|array
      */
-    public function toArray($request)
+    public function toArray($request): array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
     {
         return parent::toArray($request);
     }
