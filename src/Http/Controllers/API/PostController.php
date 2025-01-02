@@ -11,7 +11,7 @@ class PostController
         /** @var Post $post */
         $post = config('mm-feeds.post_model')::query()
             ->where('id', $id)
-            ->with('media')
+            ->with(['media'])
             ->firstOrFail();
 
         if ($post->isPublished()) {
